@@ -1,0 +1,14 @@
+[package]
+name = "copper-asx-container-surface"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+chrono = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+uuid = { workspace = true }
+
+[lib]
+name = "copper_asx_container_surface"
+path = "src/lib.rs"

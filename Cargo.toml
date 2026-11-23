@@ -4,7 +4,7 @@ members = [
     "crates/copper-asx-gates",
     "crates/copper-asx-profile",
     "crates/copper-asx-z3",
-    "crates/copper-asx-pillars", "crates/copper-asx-mcp-z3", "crates/copper-asx-soft-delete", "crates/copper-asx-shell-polish",
+    "crates/copper-asx-pillars", "crates/copper-asx-mcp-z3", "crates/copper-asx-soft-delete", "crates/copper-asx-shell-polish", "crates/copper-asx-container-surface",
 ]
 
 [workspace.package]
@@ -26,6 +26,7 @@ chrono = { version = "0.4", features = ["serde"] }
 sha2 = "0.10"
 hex = "0.4"
 parking_lot = "0.12"
+uuid = { version = "1", features = ["v4", "serde"] }
 
 [workspace.lints.rust]
 unsafe_op_in_unsafe_fn = "deny"
