@@ -2,11 +2,13 @@ mod evidence;
 mod executor;
 mod recorder;
 mod z3_stub;
+mod multi_user;
 pub mod gates_integration;
 
 pub use evidence::{EvidenceLedger, GateDecision, GateDecisionEvent};
 pub use executor::GateExecutor;
 pub use gates_integration::MutableGateContext;
+pub use multi_user::MultiUserGateContext;
 pub use recorder::EvidenceRecorder;
 pub use z3_stub::Z3Stub;
 

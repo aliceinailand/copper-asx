@@ -15,7 +15,9 @@ members = [
     "crates/copper-shell-core",
     "crates/copper-app",
     "spikes/hello",
-    "spikes/backstage", "crates/copper-asx-gates",
+    "spikes/backstage",
+    "crates/copper-asx-gates",
+    "crates/copper-asx-profile",
 ]
 
 [workspace.package]

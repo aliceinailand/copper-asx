@@ -1,4 +1,5 @@
 use crate::{Clearance, GapSet, GateDecision, GateError, GateResult};
+use copper_asx_profile::Profile;
 
 pub struct GateExecutor {
     clearance: Clearance,
@@ -68,6 +69,33 @@ impl GateExecutor {
 
     pub fn get_open_gaps(&self) -> &GapSet {
         &self.open_gaps
+    }
+
+    pub fn evaluate_with_profile(
+        &self,
+        tool_name: &str,
+        profile: &copper_asx_profile::Profile,
+    ) -> Result<GateDecision, String> {
+        if !profile.tool_surface.contains(&tool_name.to_string()) {
+            return Ok(GateDecision::Reject);
+        }
+
+        if profile.hop_limit == 0 {
+            return Ok(GateDecision::Blocked);
+        }
+
+        if self.open_gaps.has_gaps() {
+            let _gaps_str = self
+                .open_gaps
+                .gaps
+                .iter()
+                .cloned()
+                .collect::<Vec<_>>()
+                .join(", ");
+            return Ok(GateDecision::Blocked);
+        }
+
+        Ok(GateDecision::Allow)
     }
 }
 
@@ -148,5 +176,51 @@ mod tests {
 
         let (decision, _) = executor.get_decision_for_tool("test");
         assert_eq!(decision, GateDecision::Allow);
+    }
+
+    #[test]
+    fn test_evaluate_with_profile_allow() {
+        use copper_asx_profile::PersonaWeights;
+
+        let executor = GateExecutor::new(Clearance::allowed(), GapSet::new());
+        let weights = PersonaWeights::new(0.3, 0.4, 0.2, 0.1).unwrap();
+        let profile = Profile::new(
+            "alice-123".to_string(),
+            "Alice Operator".to_string(),
+            weights,
+            vec!["fetch_web_page".to_string()],
+            3,
+            "moderate".to_string(),
+            "high".to_string(),
+            false,
+        )
+        .unwrap();
+
+        let result = executor.evaluate_with_profile("fetch_web_page", &profile);
+        assert!(result.is_ok());
+        assert_eq!(result.unwrap(), GateDecision::Allow);
+    }
+
+    #[test]
+    fn test_evaluate_with_profile_reject() {
+        use copper_asx_profile::PersonaWeights;
+
+        let executor = GateExecutor::new(Clearance::allowed(), GapSet::new());
+        let weights = PersonaWeights::new(0.3, 0.4, 0.2, 0.1).unwrap();
+        let profile = Profile::new(
+            "alice-123".to_string(),
+            "Alice Operator".to_string(),
+            weights,
+            vec!["fetch_web_page".to_string()],
+            3,
+            "moderate".to_string(),
+            "high".to_string(),
+            false,
+        )
+        .unwrap();
+
+        let result = executor.evaluate_with_profile("execute_code", &profile);
+        assert!(result.is_ok());
+        assert_eq!(result.unwrap(), GateDecision::Reject);
     }
 }
