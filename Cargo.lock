@@ -100,6 +100,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "copper-asx-mcp-z3"
+version = "0.6.4"
+dependencies = [
+ "chrono",
+ "hex",
+ "parking_lot",
+ "serde",
+ "sha2",
+]
+
+[[package]]
 name = "copper-asx-pillars"
 version = "0.6.4"
 dependencies = [

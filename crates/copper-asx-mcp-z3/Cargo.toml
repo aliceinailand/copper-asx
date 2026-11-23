@@ -1,0 +1,17 @@
+[package]
+name = "copper-asx-mcp-z3"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[dependencies]
+serde = { workspace = true }
+sha2 = { workspace = true }
+hex = { workspace = true }
+parking_lot = { workspace = true }
+chrono = { workspace = true }
+
+[lints]
+workspace = true
