@@ -35,7 +35,9 @@ mod error;
 mod events;
 mod input;
 mod paths;
+pub mod theme;
 mod types;
+
 
 use std::future::Future;
 use std::path::{Path, PathBuf};

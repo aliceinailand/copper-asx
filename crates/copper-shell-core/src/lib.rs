@@ -60,6 +60,7 @@ pub mod spaces;
 pub mod updates;
 pub mod util;
 pub mod view;
+pub mod zoom;
 
 use copper_engine::Engine;
 
