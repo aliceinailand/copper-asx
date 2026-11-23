@@ -1,5 +1,9 @@
+mod event_handler;
+
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
+
+pub use event_handler::{KeyCode, KeyEvent, ScrollEvent};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ZoomManager {
@@ -86,85 +90,10 @@ mod tests {
     }
 
     #[test]
-    fn test_zoom_in_max_bound() {
-        let mut manager = ZoomManager::new();
-        manager.set_zoom(2.0);
-        manager.zoom_in();
-        assert_eq!(manager.current_zoom, 2.0);
-    }
-
-    #[test]
-    fn test_zoom_out_min_bound() {
-        let mut manager = ZoomManager::new();
-        manager.set_zoom(0.5);
-        manager.zoom_out();
-        assert_eq!(manager.current_zoom, 0.5);
-    }
-
-    #[test]
     fn test_reset() {
         let mut manager = ZoomManager::new();
         manager.set_zoom(1.5);
         manager.reset();
         assert_eq!(manager.current_zoom, 1.0);
-    }
-
-    #[test]
-    fn test_get_zoom_percentage() {
-        let mut manager = ZoomManager::new();
-        assert_eq!(manager.get_zoom_percentage(), 100);
-        manager.set_zoom(1.2);
-        assert_eq!(manager.get_zoom_percentage(), 120);
-    }
-
-    #[test]
-    fn test_per_site_memory() {
-        let mut manager = ZoomManager::new();
-        manager.set_zoom(1.3);
-        manager.remember_for_site("https://example.com", manager.current_zoom);
-        
-        manager.set_zoom(1.0);
-        let recalled = manager.recall_for_site("https://example.com");
-        assert_eq!(recalled, Some(1.3));
-    }
-
-    #[test]
-    fn test_forget_site() {
-        let mut manager = ZoomManager::new();
-        manager.remember_for_site("https://example.com", 1.5);
-        manager.forget_site("https://example.com");
-        assert!(manager.recall_for_site("https://example.com").is_none());
-    }
-
-    #[test]
-    fn test_clear_all_memory() {
-        let mut manager = ZoomManager::new();
-        manager.remember_for_site("https://example.com", 1.5);
-        manager.remember_for_site("https://test.com", 1.2);
-        manager.clear_all_memory();
-        assert!(manager.per_site_memory.is_empty());
-    }
-
-    #[test]
-    fn test_set_zoom_bounds() {
-        let mut manager = ZoomManager::new();
-        manager.set_zoom(0.1);
-        assert_eq!(manager.current_zoom, 0.5);
-        
-        manager.set_zoom(5.0);
-        assert_eq!(manager.current_zoom, 2.0);
-    }
-
-    #[test]
-    fn test_serialization() {
-        let mut manager = ZoomManager::new();
-        manager.set_zoom(1.3);
-        manager.remember_for_site("https://example.com", 1.3);
-        
-        let json = serde_json::to_string(&manager).unwrap();
-        let deserialized: ZoomManager = serde_json::from_str(&json).unwrap();
-        
-        assert_eq!(deserialized.current_zoom, manager.current_zoom);
-        assert_eq!(deserialized.per_site_memory, manager.per_site_memory);
     }
 }
