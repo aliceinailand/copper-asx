@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AppStream metadata for Copper for Linux, installed by the .deb and the
+     Flatpak into share/metainfo. Validation: see packaging/README.md. -->
+<component type="desktop-application">
+  <id>com.copperbrowser.Copper</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <name>Copper</name>
+  <summary>A quiet WebKit browser with an agent built in</summary>
+  <developer id="com.copperbrowser">
+    <name>Copper</name>
+  </developer>
+  <description>
+    <p>
+      Copper is a small, fast browser on WebKit: one field, tabs in a column or a
+      row, and the page. The Linux build is native Rust on GTK 4, libadwaita and
+      WebKitGTK.
+    </p>
+    <ul>
+      <li>Spaces, pinned tabs and private tabs</li>
+      <li>A built-in ad blocker, hide-anything and reading mode</li>
+      <li>History, bookmarks, downloads and passwords in the system keyring</li>
+      <li>Copper Cloud sync with Copper on the Mac</li>
+      <li>A local MCP server so coding agents can drive a tab</li>
+    </ul>
+  </description>
+  <launchable type="desktop-id">com.copperbrowser.Copper.desktop</launchable>
+  <url type="homepage">https://github.com/copper-browser/copper-linux</url>
+  <url type="bugtracker">https://github.com/copper-browser/copper-linux/issues</url>
+  <url type="vcs-browser">https://github.com/copper-browser/copper-linux</url>
+  <categories>
+    <category>Network</category>
+    <category>WebBrowser</category>
+  </categories>
+  <keywords>
+    <keyword>web</keyword>
+    <keyword>browser</keyword>
+    <keyword>internet</keyword>
+  </keywords>
+  <provides>
+    <binary>copper</binary>
+    <mediatype>text/html</mediatype>
+    <mediatype>application/xhtml+xml</mediatype>
+  </provides>
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+  </supports>
+  <requires>
+    <display_length compare="ge">360</display_length>
+  </requires>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="0.6.3" date="2026-11-17">
+      <description>
+        <p>Agents picture any part of a tab, in HD.</p>
+        <ul>
+          <li>browser_take_screenshot and copper shot take one element, a region or the whole page, with padding and a scale from 1 to 4 (copper shot --hd).</li>
+          <li>An element taller than the window comes out whole, and a folder given as the file gets a new name in it.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="0.6.2" date="2026-11-10">
+      <description>
+        <p>Sign in with Claude, and Google sign-ins fill in.</p>
+        <ul>
+          <li>copper claude signin signs in with your Claude account; the agent pane, Jev's typing and Check then use it.</li>
+          <li>Picking a saved account on a sign-in page that asks for the name first (Google, Microsoft) fills it in.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="0.6.1" date="2026-10-30">
+      <description>
+        <p>The Mac's keys and small touches.</p>
+        <ul>
+          <li>Ctrl+S folds the column, Ctrl+Shift+M stops sound, Ctrl+P prints, F11 goes full screen, Alt+1–9 and Alt+N for spaces.</li>
+          <li>Recently Closed in the Ctrl+T card, a Clear button at the Saved seam.</li>
+          <li>Camera and microphone answers are remembered per site; Settings › Privacy can forget them.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="0.6.0" date="2026-10-30">
+      <description>
+        <p>Catching up with the Mac.</p>
+        <ul>
+          <li>Folders in the column: drawn, folded, dragged into and out of.</li>
+          <li>Ctrl+Tab in most-recent order, Archive Today after 12/24/48 hours, zoom remembered per site.</li>
+          <li>Settings › Intelligence, search in Settings, Settings reopens where you left it.</li>
+          <li>Two-step codes fill themselves, Bitwarden auto-lock, passwords in and out as CSV.</li>
+          <li>Jev's Fast mode and strategies; copper intelligence from the command line.</li>
+          <li>Fixed: Clear History and Forget page now reach Copper Cloud.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="0.5.2" date="2026-10-30">
+      <description>
+        <p>Settings has the Mac's pages, in the Mac's order, and is shorter.</p>
+        <ul>
+          <li>Appearance is on General, and tabs left or top on Tabs › Layout.</li>
+          <li>Addons is called Extensions, and Updates is About.</li>
+          <li>Agents folds its port and token under Advanced, with one row of Copy buttons.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="0.5.1" date="2026-10-29">
+      <description>
+        <p>Copper Cloud: a computer can only overwrite what was changed on it.</p>
+        <ul>
+          <li>Folders and kept tabs only change on your other devices when you changed them here.</li>
+          <li>A sync that would unfile or remove more than 10 kept tabs asks first, both ways.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="0.5.0" date="2026-10-28">
+      <description>
+        <p>Calendar peek on the Google Calendar pin, folder-aware dragging, and pins that sync once per site.</p>
+        <ul>
+          <li>Rest on a Google Calendar pin to see your next meetings, with Join for video calls (Settings › Tabs › Calendar).</li>
+          <li>Dragging a row shows no marker over its own place, and can pin it even with no favourites yet.</li>
+          <li>Pins sync once per site across devices; a pin another device re-keys keeps its page.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="0.4.1" date="2026-10-19">
+      <description>
+        <p>Sign in to Copper Cloud with your company account from Settings, and open copper://cloud/join links there.</p>
+        <ul>
+          <li>Settings › Cloud signs in with your company account in the system browser (Continue with Google), for a sign-in link or an instance that offers it.</li>
+          <li>A copper://cloud/join link opens Settings › Cloud with the code, from the command line, a running Copper or the address field, and never switches to another instance without asking.</li>
+          <li>An instance with a publicly trusted certificate is no longer described as plain HTTP.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="0.4.0" date="2026-10-19">
+      <description>
+        <p>The Agent sidebar, filled by an addon from your Copper Cloud.</p>
+        <ul>
+          <li>Ctrl+E opens the Agent sidebar on the right of the window; drag its edge to change its width.</li>
+          <li>Copper Cloud decides which addon fills it. A new addon or version is checked and staged, Settings › Updates says Update available, and Install loads it without a relaunch.</li>
+          <li>Settings › Addons lists installed addons, turns one off on this computer, removes one, and checks for updates.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="0.3.0" date="2026-10-19">
+      <description>
+        <p>Sign in to Copper Cloud with your company account, and run Copper with no display as an agent's own browser.</p>
+        <ul>
+          <li>copper cloud sso signs in with your company account in the system browser; copper cloud pair pairs a profile while Copper is not running; copper cloud status shows the link, the account and the sync switches.</li>
+          <li>Copper Cloud sign-in links and copper://cloud/join deep links are recognised, and Copper registers itself for copper:// links.</li>
+          <li>A Copper Cloud code without a certificate fingerprint is checked against the public certificate authorities.</li>
+          <li>COPPER_ROUTER_URL and COPPER_ROUTER_KEY name the model router for a headless Copper.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="0.2.0" date="2026-10-16">
+      <description>
+        <p>Big canvases are fast, agents can read them a page at a time, and tabs are easier to keep.</p>
+        <ul>
+          <li>A canvas draws only what is on screen. Live web frames load only when they are on screen and big enough to read, a few at a time. A frame that is let go shows a snapshot of its site. Images drawn small use a small copy, and notes far zoomed out draw as simple blocks.</li>
+          <li>Agents read a big canvas in pages: canvas_read takes overview, frame, region, ids, types, query, limit and cursor. Canvas tools now wait for a canvas tab that is asleep, just restored or slow to load.</li>
+          <li>Ctrl+T lists Open Tabs, then History, then Search. Tab and Shift+Tab jump between the sections.</li>
+          <li>Closing a Saved tab keeps it in Saved, as in Arc. Only the row's close button removes it. You can drag a tab into Saved.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="0.1.1" date="2026-10-13">
+      <description><p>Installer refreshes apt package lists on fresh machines (fixes installs on clean Ubuntu and Debian).</p></description>
+    </release>
+    <release version="0.1.0" date="2026-10-13">
+      <description>
+        <p>First Linux release.</p>
+      </description>
+    </release>
+  </releases>
+</component>

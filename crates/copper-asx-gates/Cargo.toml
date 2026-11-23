@@ -17,6 +17,7 @@ hex = "0.4"
 chrono = { version = "0.4", features = ["serde"] }
 anyhow = { workspace = true }
 copper-asx-profile = { path = "../copper-asx-profile" }
+copper-asx-z3 = { path = "../copper-asx-z3" }
 
 [dev-dependencies]
 tokio-test = "0.4"
