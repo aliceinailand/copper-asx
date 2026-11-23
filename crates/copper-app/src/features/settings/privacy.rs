@@ -32,7 +32,7 @@ pub fn page(shell: &Shell) -> adw::PreferencesPage {
     if let Some(t) = &trouble {
         let r = line(
             t,
-            "Nothing is being blocked until this clears — try again, or restart Copper",
+            "Nothing is being blocked until this clears — try again, or restart ASX",
         );
         let again = button("Try again", false);
         let weak = shell.downgrade();
@@ -91,7 +91,7 @@ pub fn page(shell: &Shell) -> adw::PreferencesPage {
                 &s,
                 "Clear all history?",
                 if history_syncs() {
-                    "Every address you have been to goes from this computer and from Copper Cloud, for every computer signed in as you. This can’t be undone."
+                    "Every address you have been to goes from this computer and from ASX Cloud, for every computer signed in as you. This can't be undone."
                 } else {
                     "Every address you have been to goes from this computer. Tabs, bookmarks and passwords stay. This can’t be undone."
                 },
@@ -145,12 +145,12 @@ pub fn page(shell: &Shell) -> adw::PreferencesPage {
     page
 }
 
-/// History syncs to Copper Cloud now: clearing it here clears it there.
+/// History syncs to ASX Cloud now: clearing it here clears it there.
 fn history_syncs() -> bool {
     crate::cloud::get().is_some_and(|c| c.sync.active(copper_cloud::Domain::History))
 }
 
-/// Every address, here and — while history syncs — on Copper Cloud.
+/// Every address, here and — while history syncs — on ASX Cloud.
 pub fn clear_history(shell: &Shell) {
     shell.history_mut().clear();
     shell.history_changed();

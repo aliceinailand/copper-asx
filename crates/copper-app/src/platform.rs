@@ -114,7 +114,7 @@ impl GtkView {
     pub fn new(app: &adw::Application, options: &crate::options::Options) -> GtkView {
         let window = adw::ApplicationWindow::builder()
             .application(app)
-            .title("Copper")
+            .title("ASX")
             .default_width(if options.scripted() { 1440 } else { 1280 })
             .default_height(if options.scripted() { 900 } else { 820 })
             .build();

@@ -5,7 +5,7 @@
 //!
 //! Keys live in `intelligence.json` (0600), the file the agents' MCP host
 //! reads on every call ([`copper_mcp::intelligence::read_files`]), so a key
-//! typed here is used at once. While Copper Cloud provides the gateway key
+//! typed here is used at once. While ASX Cloud provides the gateway key
 //! it decides the lane and the key and address rows fade; this computer's
 //! own entries stay in the file for after sign-out
 //! ([`copper_mcp::intelligence::merge`]). The Claude account lane is not on
@@ -56,7 +56,7 @@ pub fn edit(shell: &Shell, f: impl FnOnce(&mut IntelligenceKeys)) {
     }
 }
 
-/// The keys in force: this computer's, Copper Cloud's and the environment's.
+/// The keys in force: this computer's, ASX Cloud's and the environment's.
 /// No Claude account on Linux.
 pub fn effective(shell: &Shell) -> Effective {
     Effective::new(&brain::read_files(shell.store()), false)
@@ -71,7 +71,7 @@ fn elsewhere(shell: &Shell, eff: &Effective, field: &str) -> Option<String> {
                 .cloud
                 .and_then(|c| c.host)
                 .unwrap_or_else(|| "your cloud".into());
-            Some(format!("Provided by Copper Cloud ({host})"))
+            Some(format!("Provided by ASX Cloud ({host})"))
         }
         Some("env") => Some("Set for this run by COPPER_ROUTER_URL and COPPER_ROUTER_KEY".into()),
         _ => None,
@@ -166,7 +166,7 @@ pub fn page(shell: &Shell) -> adw::PreferencesPage {
     let file = local(shell);
     let mine = Keys::from_file(&file);
     let eff = effective(shell);
-    // While Copper Cloud decides the lane its key is used: the boxes read empty.
+    // While ASX Cloud decides the lane its key is used: the boxes read empty.
     let cloud_lane = eff.sources.get("lane").map(String::as_str) == Some("cloud");
 
     // — Model access —
@@ -450,7 +450,7 @@ fn sync(rows: &Rows, shell: &Shell) {
 
     let mut footnote = "Keys stay on this computer, in a file only you can read.".to_string();
     if eff.sources.values().any(|s| s == "cloud") {
-        footnote += " Keys from Copper Cloud go when you sign out of it. While it provides a gateway key, that key is used; a Jev key typed here still wins over the cloud's.";
+        footnote += " Keys from ASX Cloud go when you sign out of it. While it provides a gateway key, that key is used; a Jev key typed here still wins over the cloud's.";
     }
     rows.jev_group.set_description(Some(&footnote));
 }

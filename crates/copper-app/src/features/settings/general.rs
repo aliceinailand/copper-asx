@@ -1,5 +1,5 @@
 //! Settings › General (Mac: `Settings.swift` `general`, `downloads`):
-//! Copper as the default browser and its appearance, the search engine, the
+//! ASX as the default browser and its appearance, the search engine, the
 //! download folder.
 
 use super::{button, combo, group, line, segmented};
@@ -26,7 +26,7 @@ pub fn flatpak() -> bool {
 pub fn page(shell: &Shell) -> adw::PreferencesPage {
     let page = adw::PreferencesPage::new();
 
-    let here = group(Some("Copper on this computer"));
+    let here = group(Some("ASX on this computer"));
     let default = line("Open links from other apps", "Checking…");
     let make = button("Make default", true);
     make.set_visible(false);
@@ -35,7 +35,7 @@ pub fn page(shell: &Shell) -> adw::PreferencesPage {
     default.add_suffix(&tick);
     default.add_suffix(&make);
     here.add(&default);
-    // Mac: General › Copper on this Mac › Appearance (Copper#115; was its own page).
+    // Mac: General › ASX on this Mac › Appearance (ASX#115; was its own page).
     let look = line(
         "Appearance",
         "Light, dark, or whatever the system is doing — pages follow it too",
@@ -156,9 +156,9 @@ fn show_default(row: &adw::ActionRow, make: &gtk::Button, tick: &gtk::Image) {
         tick.set_visible(yes);
         make.set_visible(!yes && !flatpak());
         row.set_subtitle(if yes {
-            "Copper is the default browser on this computer"
+            "ASX is the default browser on this computer"
         } else if flatpak() {
-            "Choose Copper under Default Applications in your system settings"
+            "Choose ASX under Default Applications in your system settings"
         } else {
             "Mail, chat and the rest still send links elsewhere"
         });
@@ -180,7 +180,7 @@ async fn output(argv: &[&str]) -> Option<String> {
     Some(out.map(|s| s.to_string()).unwrap_or_default())
 }
 
-/// Copper is the desktop's web browser (`xdg-settings`, or GIO's handler
+/// ASX is the desktop's web browser (`xdg-settings`, or GIO's handler
 /// for `http` when `xdg-settings` is missing).
 pub async fn is_default() -> bool {
     if let Some(out) = output(&["xdg-settings", "get", "default-web-browser"]).await {

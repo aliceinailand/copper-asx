@@ -45,7 +45,7 @@ pub use copper_shell_core::{control, crash, downloads, options, private, session
 pub use shell::Shell;
 
 /// The application id (D-Bus name, desktop file, icon).
-pub const APP_ID: &str = "com.copperbrowser.Copper";
+pub const APP_ID: &str = "com.alison.ASX";
 
 /// Entry point of the `copper` binary.
 pub fn main() -> std::process::ExitCode {
