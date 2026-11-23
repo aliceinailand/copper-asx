@@ -224,10 +224,10 @@ pub fn page(shell: &Shell) -> adw::PreferencesPage {
     });
     behaviour.add(&target);
     let bring = row(
-        "Bring in from Chrome, Chromium or Brave",
+        "Import from Chrome, Chromium or Brave",
         "Bookmarks, history, open tabs and passwords",
     );
-    let go = pill("Bring In…", false);
+    let go = pill("Import…", false);
     let weak = shell.downgrade();
     go.connect_clicked(move |_| {
         if let Some(s) = weak.upgrade() {

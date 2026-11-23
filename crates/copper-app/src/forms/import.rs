@@ -1,4 +1,4 @@
-//! "Bring in from Chrome, Chromium or Brave" (Mac `Import.swift`,
+//! "Import from Chrome, Chromium or Brave" (Mac `Import.swift`,
 //! `Fork/Flow/*`): pick a browser and a profile, choose what comes over —
 //! bookmarks, history, open tabs (sleeping, in new spaces) and passwords
 //! (into the keyring) — then a progress line and a summary.
@@ -274,7 +274,7 @@ fn open_spaces(shell: &Shell, spaces: Vec<tabs::ImportedSpace>) -> (usize, usize
 /// The sheet.
 pub fn present(shell: &Shell) {
     let dialog = adw::Dialog::new();
-    dialog.set_title("Bring In");
+    dialog.set_title("Import");
     dialog.set_content_width(460);
     let view = adw::ToolbarView::new();
     let header = adw::HeaderBar::new();
@@ -288,7 +288,7 @@ pub fn present(shell: &Shell) {
     let found = browsers();
     let choose = adw::PreferencesPage::new();
     let intro = adw::PreferencesGroup::new();
-    intro.set_title("Bring in from another browser");
+    intro.set_title("Import from another browser");
     intro.set_description(Some(
         "Copper reads a copy of the other browser's files and changes nothing there. Passwords go into your keyring.",
     ));
@@ -341,7 +341,7 @@ pub fn present(shell: &Shell) {
     which.connect_selected_notify(move |r| fill_profiles(r.selected()));
 
     let what = adw::PreferencesGroup::new();
-    what.set_title("What to bring");
+    what.set_title("What to import");
     let switch = |title: &str, sub: &str| {
         let s = adw::SwitchRow::new();
         s.set_title(title);
@@ -377,7 +377,7 @@ pub fn present(shell: &Shell) {
     }
     choose.add(&what);
     let go_group = adw::PreferencesGroup::new();
-    let go = gtk::Button::with_label("Bring In");
+    let go = gtk::Button::with_label("Import");
     go.add_css_class("suggested-action");
     go.add_css_class("pill");
     go.set_halign(gtk::Align::Center);

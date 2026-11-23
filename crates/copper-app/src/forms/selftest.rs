@@ -835,7 +835,7 @@ async fn chrome_import(run: &Rc<Run>) {
     walk(&sheet_w, &mut |w| {
         if go.is_none()
             && let Some(b) = w.downcast_ref::<gtk::Button>()
-            && b.label().as_deref() == Some("Bring In")
+            && b.label().as_deref() == Some("Import")
         {
             go = Some(b.clone());
         }

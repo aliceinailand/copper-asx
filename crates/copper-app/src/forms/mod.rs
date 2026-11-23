@@ -7,7 +7,7 @@
 //! * [`picker`] — the saved accounts in a small list under the box.
 //! * [`keyring`] — the Secret Service, looked at without opening it.
 //! * [`settings`] — Settings › Passwords.
-//! * [`import`] — the "Bring in from Chrome, Chromium or Brave" sheet.
+//! * [`import`] — the "Import from Chrome, Chromium or Brave" sheet.
 
 // `vault` is the module and the handle (`vault()`).
 pub use copper_shell_core::forms::{
@@ -124,12 +124,12 @@ pub fn register(shell: &Shell) {
         shell,
         Command::new(
             "bring-in",
-            "Bring In from Chrome, Chromium or Brave…",
+            "Import from Chrome, Chromium or Brave…",
             "document-open-symbolic",
             import::present,
         ),
     );
-    crate::actions::register_menu_item(shell, "Bring In from Chrome…", "win.bring-in");
+    crate::actions::register_menu_item(shell, "Import…", "win.bring-in");
     register_command(
         shell,
         Command::new("passwords", "Passwords", "dialog-password-symbolic", |s| {
