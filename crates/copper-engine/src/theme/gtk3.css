@@ -1,0 +1,453 @@
+/*
+ * Copper Shell GTK Theme
+ * Uses semantic color tokens from copper-engine theme
+ * Supports Light, Dark, and White modes
+ */
+
+:root {
+  --copper-transition: 150ms ease-out;
+}
+
+/* Light Mode (default) */
+:root {
+  --copper-canvas: rgb(247, 244, 252);
+  --copper-panel: rgb(255, 255, 255);
+  --copper-border: rgb(212, 196, 239);
+  --copper-text-primary: rgb(26, 18, 40);
+  --copper-brand: rgb(109, 40, 217);
+  --copper-action: rgb(109, 40, 217);
+  --copper-action-text: rgb(245, 237, 216);
+  --copper-weight: rgb(168, 134, 63);
+  --copper-data: rgb(14, 116, 144);
+  --copper-pass: rgb(5, 150, 105);
+  --copper-fail: rgb(220, 38, 38);
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --copper-canvas: rgb(10, 8, 9);
+    --copper-panel: rgb(19, 17, 26);
+    --copper-border: rgb(45, 27, 78);
+    --copper-text-primary: rgb(232, 230, 240);
+    --copper-brand: rgb(167, 139, 250);
+    --copper-action: rgb(124, 58, 237);
+    --copper-action-text: rgb(245, 237, 216);
+    --copper-weight: rgb(200, 163, 90);
+    --copper-data: rgb(34, 211, 238);
+    --copper-pass: rgb(52, 195, 153);
+    --copper-fail: rgb(248, 113, 113);
+  }
+}
+
+/* White Mode (explicit opt-in via data attribute) */
+html[data-theme="white"] {
+  --copper-canvas: rgb(255, 255, 255);
+  --copper-panel: rgb(255, 255, 255);
+  --copper-border: rgb(232, 228, 240);
+  --copper-text-primary: rgb(15, 10, 26);
+  --copper-brand: rgb(109, 40, 217);
+  --copper-action: rgb(109, 40, 217);
+  --copper-action-text: rgb(245, 237, 216);
+  --copper-weight: rgb(109, 40, 217);
+  --copper-data: rgb(14, 116, 144);
+  --copper-pass: rgb(5, 150, 105);
+  --copper-fail: rgb(220, 38, 38);
+}
+
+/* Base GTK window styling */
+window {
+  background-color: var(--copper-canvas);
+  color: var(--copper-text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Headerbar (window title bar) */
+headerbar {
+  background-color: var(--copper-panel);
+  border-bottom: 1px solid var(--copper-border);
+  color: var(--copper-text-primary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Menu bar */
+menubar {
+  background-color: var(--copper-panel);
+  color: var(--copper-text-primary);
+  border-bottom: 1px solid var(--copper-border);
+}
+
+menubar > item {
+  padding: 8px 12px;
+  transition: background-color var(--copper-transition);
+}
+
+menubar > item:hover {
+  background-color: rgba(109, 40, 217, 0.1);
+}
+
+menubar > item:selected {
+  background-color: var(--copper-brand);
+  color: var(--copper-action-text);
+}
+
+/* Buttons */
+button {
+  background-color: transparent;
+  color: var(--copper-text-primary);
+  border: 1px solid var(--copper-border);
+  border-radius: 4px;
+  padding: 6px 12px;
+  transition: all var(--copper-transition);
+  font-weight: 500;
+}
+
+button:hover {
+  background-color: rgba(109, 40, 217, 0.08);
+  border-color: var(--copper-brand);
+}
+
+button:active {
+  background-color: rgba(109, 40, 217, 0.15);
+}
+
+/* Primary action buttons */
+button.suggested-action {
+  background-color: var(--copper-action);
+  color: var(--copper-action-text);
+  border: none;
+}
+
+button.suggested-action:hover {
+  background-color: rgba(109, 40, 217, 0.9);
+  box-shadow: 0 2px 6px rgba(109, 40, 217, 0.3);
+}
+
+button.suggested-action:active {
+  background-color: rgba(109, 40, 217, 0.8);
+}
+
+/* Destructive buttons (red) */
+button.destructive-action {
+  background-color: var(--copper-fail);
+  color: white;
+  border: none;
+}
+
+button.destructive-action:hover {
+  background-color: rgba(220, 38, 38, 0.9);
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.3);
+}
+
+/* Entry/input fields */
+entry,
+textview {
+  background-color: var(--copper-panel);
+  color: var(--copper-text-primary);
+  border: 1px solid var(--copper-border);
+  border-radius: 4px;
+  padding: 8px;
+  transition: border-color var(--copper-transition);
+}
+
+entry:focus,
+textview:focus {
+  border-color: var(--copper-brand);
+  box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.1);
+}
+
+/* Labels */
+label {
+  color: var(--copper-text-primary);
+}
+
+label.subtitle {
+  color: rgba(26, 18, 40, 0.7);
+  font-size: 0.9em;
+}
+
+@media (prefers-color-scheme: dark) {
+  label.subtitle {
+    color: rgba(232, 230, 240, 0.7);
+  }
+}
+
+/* Links / data indicators */
+link {
+  color: var(--copper-data);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color var(--copper-transition);
+}
+
+link:hover {
+  color: rgba(14, 116, 144, 0.8);
+  text-decoration: underline;
+}
+
+link:visited {
+  color: rgba(14, 116, 144, 0.6);
+}
+
+/* Tabs */
+notebook > tab {
+  background-color: rgba(109, 40, 217, 0.08);
+  color: var(--copper-text-primary);
+  border: 1px solid var(--copper-border);
+  border-bottom: none;
+  padding: 8px 12px;
+  transition: all var(--copper-transition);
+}
+
+notebook > tab:hover {
+  background-color: rgba(109, 40, 217, 0.15);
+}
+
+notebook > tab.active {
+  background-color: var(--copper-panel);
+  border-bottom: 2px solid var(--copper-weight);
+  color: var(--copper-brand);
+  font-weight: 600;
+}
+
+/* Verdict indicators (pass/fail) */
+.verdict-pass {
+  color: var(--copper-pass);
+  font-weight: 600;
+}
+
+.verdict-pass::before {
+  content: "✓ ";
+  margin-right: 4px;
+}
+
+.verdict-fail {
+  color: var(--copper-fail);
+  font-weight: 600;
+}
+
+.verdict-fail::before {
+  content: "✗ ";
+  margin-right: 4px;
+}
+
+/* Scrollbar styling */
+scrollbar {
+  background-color: rgba(109, 40, 217, 0.05);
+  border-radius: 6px;
+}
+
+scrollbar.vert slider {
+  background-color: rgba(109, 40, 217, 0.4);
+  border-radius: 6px;
+  min-width: 8px;
+  transition: background-color var(--copper-transition);
+}
+
+scrollbar.vert slider:hover {
+  background-color: rgba(109, 40, 217, 0.6);
+}
+
+/* Popover / dropdown panels */
+popover {
+  background-color: var(--copper-panel);
+  border: 1px solid var(--copper-border);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+popover > contents {
+  padding: 8px;
+}
+
+/* Search bar */
+searchbar {
+  background-color: var(--copper-panel);
+  border-bottom: 1px solid var(--copper-border);
+  padding: 8px 12px;
+}
+
+searchbar entry {
+  background-color: rgba(109, 40, 217, 0.05);
+  border-color: var(--copper-border);
+}
+
+searchbar entry:focus {
+  background-color: white;
+  border-color: var(--copper-brand);
+  box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.1);
+}
+
+/* Statusbar at bottom of window */
+statusbar {
+  background-color: var(--copper-panel);
+  border-top: 1px solid var(--copper-border);
+  color: var(--copper-text-primary);
+  padding: 4px 12px;
+  font-size: 0.9em;
+}
+
+/* Zoom indicator (statusbar child) */
+.zoom-indicator {
+  font-weight: 600;
+  color: var(--copper-data);
+  min-width: 60px;
+  text-align: center;
+  padding: 0 8px;
+}
+
+.zoom-indicator button {
+  padding: 2px 6px;
+  font-size: 0.85em;
+  margin-left: 4px;
+}
+
+/* Sidebar navigation */
+sidebar {
+  background-color: var(--copper-panel);
+  border-right: 1px solid var(--copper-border);
+}
+
+sidebar > item {
+  padding: 10px 12px;
+  border-left: 3px solid transparent;
+  transition: all var(--copper-transition);
+}
+
+sidebar > item:hover {
+  background-color: rgba(109, 40, 217, 0.08);
+}
+
+sidebar > item.active {
+  background-color: rgba(109, 40, 217, 0.15);
+  border-left-color: var(--copper-weight);
+  font-weight: 600;
+  color: var(--copper-brand);
+}
+
+/* Dialog windows */
+dialog {
+  background-color: var(--copper-canvas);
+}
+
+dialog headerbar {
+  background-color: var(--copper-panel);
+}
+
+/* Spinner / loading indicator */
+spinner {
+  color: var(--copper-brand);
+}
+
+/* Checklist / checkbutton */
+checkbutton,
+radiobutton {
+  color: var(--copper-text-primary);
+}
+
+checkbutton check,
+radiobutton radio {
+  border: 2px solid var(--copper-border);
+  background-color: white;
+  border-radius: 2px;
+  transition: all var(--copper-transition);
+}
+
+checkbutton check:checked,
+radiobutton radio:checked {
+  background-color: var(--copper-brand);
+  border-color: var(--copper-brand);
+  box-shadow: inset 0 0 0 2px white;
+}
+
+checkbutton:hover check,
+radiobutton:hover radio {
+  border-color: var(--copper-brand);
+  box-shadow: 0 0 0 2px rgba(109, 40, 217, 0.1);
+}
+
+/* Separator lines */
+separator {
+  color: var(--copper-border);
+  min-height: 1px;
+}
+
+separator.vertical {
+  min-width: 1px;
+}
+
+/* Progressbar */
+progressbar {
+  background-color: rgba(109, 40, 217, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+progressbar > trough > progress {
+  background-color: var(--copper-brand);
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(109, 40, 217, 0.3);
+}
+
+/* Info bar (notifications) */
+infobar.info {
+  background-color: rgba(14, 116, 144, 0.1);
+  border-top: 2px solid var(--copper-data);
+  color: var(--copper-text-primary);
+}
+
+infobar.warning {
+  background-color: rgba(168, 134, 63, 0.1);
+  border-top: 2px solid var(--copper-weight);
+  color: var(--copper-text-primary);
+}
+
+infobar.question {
+  background-color: rgba(109, 40, 217, 0.1);
+  border-top: 2px solid var(--copper-brand);
+  color: var(--copper-text-primary);
+}
+
+infobar.error {
+  background-color: rgba(220, 38, 38, 0.1);
+  border-top: 2px solid var(--copper-fail);
+  color: var(--copper-text-primary);
+}
+
+/* Tooltip */
+tooltip {
+  background-color: rgba(26, 18, 40, 0.95);
+  color: white;
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 0.85em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+  tooltip {
+    background-color: rgba(232, 230, 240, 0.95);
+    color: rgb(10, 8, 9);
+  }
+}
+
+/* Text emphasis classes (companion to verdict) */
+.text-weight {
+  color: var(--copper-weight);
+  font-weight: 600;
+}
+
+.text-data {
+  color: var(--copper-data);
+  font-weight: 500;
+}
+
+.text-muted {
+  color: rgba(26, 18, 40, 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+  .text-muted {
+    color: rgba(232, 230, 240, 0.5);
+  }
+}

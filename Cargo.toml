@@ -4,6 +4,7 @@ members = [
     "crates/copper-asx-gates",
     "crates/copper-asx-profile",
     "crates/copper-asx-z3",
+    "crates/copper-asx-pillars",
 ]
 
 [workspace.package]
