@@ -1,0 +1,11 @@
+[package]
+name = "copper-asx-shell-polish"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = { workspace = true }
+
+[lib]
+name = "copper_asx_shell_polish"
+path = "src/lib.rs"

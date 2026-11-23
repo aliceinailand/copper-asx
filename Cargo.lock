@@ -135,6 +135,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "copper-asx-shell-polish"
+version = "0.1.0"
+dependencies = [
+ "serde",
+]
+
+[[package]]
 name = "copper-asx-soft-delete"
 version = "0.1.0"
 dependencies = [
